@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1=title
+  
+  form(method='POST' action='')
+    div.form-group
+      label(for='album_title') Title:
+      input#album_title.form-control(type='text', placeholder='Enter album title', name='album_title' required='true' value=(undefined===album ? '' : album.title))
+    button.btn.btn-primary(type='submit') Submit
+  if errors
+    ul
+      for errors in error
+        li!= error.msg

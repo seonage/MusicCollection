@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1= title
+  
+  ul
+  each artist in artist_list
+    li
+      a(href=artist.url) #{artist.artist_name} 
+      
+  else
+    li There are no artists in the database at the moment
