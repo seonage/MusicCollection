@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h1=title
+  
+  form(method='POST' action='')
+    div.form-group
+      label(for='first_name') Name:
+      input#artist_name.form-control(type='text', placeholder='Artist name' name='artist_name' required='true' value=(undefined===artist ? '' : artist.artist_name))
+    div.form-group
+      label(for='biography') Biography:
+      input#artist_biography.form-control(type='text', placeholder='Enter the biography of the artist here', name='artist_biography', value=(undefined===artist ? '' : artist.artist_biography))
+    button.btn.btn-primary(type='submit')  Submit
+  if errors
+    ul
+      for error in errors
+        li!= error.msg

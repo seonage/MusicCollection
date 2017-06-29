@@ -12,20 +12,15 @@ exports.getArtistList = function(req, res, next){
 
 //Find the details of an artist and displays the information on an page
 exports.getArtistDetail = function(req, res, next){
-	/*Artist.findById(req.params.id)
-	  .exec(function (err, results){
-		  if (err) { return next(err) }
-		  res.render('artist_detail', { title: 'Artist: Artist Detail', artist: results.artist });
-	  });*/
 	Artist.findById(req.params.id, function (err, result){
 		if (err) { return next(err) };
 		res.render('artist_detail', { title: 'Artist: Artist Detail', artist: result });
 	});
-}
+};
 
 //GET the form that allows new artists to be created
 exports.createArtistGet = function(req, res, next){
-	res.render('artist_form', { title: 'Create Artist' });
+	res.render('artist_create', { title: 'Create Artist' });
 };
 
 //POST the data needed to create a new artist entry in the database
@@ -51,7 +46,23 @@ exports.createArtistPost = function(req, res, next){
 	else{
 		artist.save(function (err){
 			if (err) { return next(err);}
-			res.redirect('/artist/create');
+			res.redirect('/artist');
 		})
 	}
+};
+
+//GET the form that allows an artist to be deleted from the database
+exports.deleteArtistGet = function(req, res, next){
+	Artist.findById(req.params.id, function(err, result){
+		if(err) { return next(err) };
+		res.render('artist_delete', { artist: result });
+	});
+};
+
+//POST the form that allows an artist to be deleted from the database
+exports.deleteArtistPost = function(req, res, next){
+	Artist.findByIdAndRemove(req.params.id, function(err, result){
+		if(err) { return next(err) };
+		res.redirect('/artist')
+	});
 };

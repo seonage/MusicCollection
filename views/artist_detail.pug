@@ -1,7 +1,10 @@
 extends layout
 
 block content
-
   h1 #{artist.artist_name}
   
   p #{artist.artist_biography}
+  
+  hr
+  p 
+    a(href = artist.url + '/delete') Delete artist
