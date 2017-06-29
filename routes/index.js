@@ -9,8 +9,13 @@ router.get('/', function(req, res) {
   res.render('index', { title: 'Express' });
 });
 
+/* ARTISTS ROUTES */
+
 //Display all the artists in the database
 router.get('/artist', artistController.getArtistList)
+
+//GET the details of an artist
+router.get('/artist/:id', artistController.getArtistDetail)
 
 //GET the form that allows for new artists to be added
 router.get('/artist/create', artistController.createArtistGet);
@@ -20,6 +25,8 @@ router.post('/artist/create', artistController.createArtistPost);
 
 //GET the form that allows for an artist to be deleted
 //router.get('/artist/delete');
+
+/* ALBUM ROUTES */
 
 //GET the form that allows for new albums to be added
 router.get('/album/create', albumController.createAlbumGet);

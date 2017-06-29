@@ -1,5 +1,6 @@
 var Artist = require('../models/artist');
 
+//Find all the artists in the database and then displays them in a list on a page
 exports.getArtistList = function(req, res, next){
 	Artist.find()
 	  .sort([['artist_name', 'ascending']])
@@ -8,6 +9,19 @@ exports.getArtistList = function(req, res, next){
 		 res.render('artist_list', { title: 'Artist List', artist_list: list_artists});
 	  });
 };
+
+//Find the details of an artist and displays the information on an page
+exports.getArtistDetail = function(req, res, next){
+	/*Artist.findById(req.params.id)
+	  .exec(function (err, results){
+		  if (err) { return next(err) }
+		  res.render('artist_detail', { title: 'Artist: Artist Detail', artist: results.artist });
+	  });*/
+	Artist.findById(req.params.id, function (err, result){
+		if (err) { return next(err) };
+		res.render('artist_detail', { title: 'Artist: Artist Detail', artist: result });
+	});
+}
 
 //GET the form that allows new artists to be created
 exports.createArtistGet = function(req, res, next){
