@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  p Really remove #{artist.artist_name} from the database?
+  
+  form(method='POST' action='')
+    div.form-group
+      input#artistid.form-control(type='hidden', name='artistid', required='true', value=artist._id)
+    button.btn.btn-primary(type='submit') Delete Artist
