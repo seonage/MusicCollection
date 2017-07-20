@@ -39,6 +39,8 @@ exports.createArtistPost = function(req, res, next){
 		artist_biography: req.body.artist_biography
 	});
 	
+	console.log('New artist added: ' + artist);
+	
 	if (errors){
 		res.render('artist_form', { title:'Create artist', artist_name: artist_name, errors: errors});
 		return;
