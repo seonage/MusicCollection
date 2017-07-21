@@ -12,11 +12,20 @@ exports.getAlbumList = function(req, res, next){
 };
 
 //Find the details of an album and displays the information on a page
-exports.getAlbumDetail = function(req, res, next){
+/*exports.getAlbumDetail = function(req, res, next){
 	Album.findById(req.params.id, function (err, result){
 		if (err) { return next(err) };
-		res.render('album_detail', {title: 'Test', album: result});
+		res.render('album_detail', {title: result.title, album: result});
 	});
+};*/
+exports.getAlbumDetail = function(req, res, next){
+	Album
+	  .findById(req.params.id)
+	  .populate('artist')
+	  .exec(function (err, album){
+		 if(err){ return next(err) };
+		 res.render('album_detail', { title: album.title, album: album });
+	  });
 };
 
 //GET the form that allows for new albums to be created. Also gets a list of artists already in the database
