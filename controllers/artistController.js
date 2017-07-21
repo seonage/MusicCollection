@@ -14,7 +14,7 @@ exports.getArtistList = function(req, res, next){
 exports.getArtistDetail = function(req, res, next){
 	Artist.findById(req.params.id, function (err, result){
 		if (err) { return next(err) };
-		res.render('artist_detail', { title: 'Artist: Artist Detail', artist: result });
+		res.render('artist_detail', { title: result.artist_name, artist: result });
 	});
 };
 
