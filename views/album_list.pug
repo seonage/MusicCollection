@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1= title
+  
+  ul
+  each album in albums_list
+    li
+      a(href=album.url) #{album.title}
+      
+  else
+    li There are no albums in the database at the moment 
