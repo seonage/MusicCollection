@@ -26,7 +26,16 @@ router.post('/artist/:id/delete', artistController.deleteArtistPost);
 
 /* ALBUM ROUTES */
 
+//Displays all the albums in the database
+router.get('/album', albumController.getAlbumList);
+
 //GET the form that allows for new albums to be added
 router.get('/album/create', albumController.createAlbumGet);
+
+//POST the form that allows for new albums to be created
+router.post('/album/create', albumController.createAlbumPost);
+
+//GET the details of an album
+router.get('/album/:id', albumController.getAlbumDetail);
 
 module.exports = router;

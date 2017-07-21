@@ -5,6 +5,11 @@ block content
   
   form(method='POST' action='')
     div.form-group
+      label(for='artist') Artist:
+      select#artist.form-control(type='select' placeholder='Select Artist' name='artist' required ='true')
+        for artist in artist_list
+          option(value=artist._id) #{artist.artist_name}
+    div.form-group
       label(for='album_title') Title:
       input#album_title.form-control(type='text', placeholder='Enter album title', name='album_title' required='true' value=(undefined===album ? '' : album.title))
     button.btn.btn-primary(type='submit') Submit
