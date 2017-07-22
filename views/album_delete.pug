@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  p Really remove #{album.title} from the database?
+  
+  form(method='POST' action='')
+    div.form-group
+      input#album.form-control(type='hidden', name ='artist', required='true', value=album._id)
+    button.btn.btn-primary(type='submit') Delete artist

@@ -38,4 +38,10 @@ router.post('/album/create', albumController.createAlbumPost);
 //GET the details of an album
 router.get('/album/:id', albumController.getAlbumDetail);
 
+//GET the form that allows for an album to be deleted
+router.get('/album/:id/delete', albumController.getAlbumDelete);
+
+//POST the form that deletes an album
+router.post('/album/:id/delete', albumController.postAlbumDelete)
+
 module.exports = router;

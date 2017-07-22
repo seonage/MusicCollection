@@ -71,3 +71,18 @@ exports.createAlbumPost = function(req, res, next){
 		})
 	};
 };
+
+//GET the form that allows for an album to be deleted
+exports.getAlbumDelete = function(req, res, next){
+	Album.findById(req.params.id, function(err, result){
+		res.render('album_delete', { title: "Delete?", album: result});
+	});
+};
+
+//POST the form that deletes an album
+exports.postAlbumDelete = function(req, res, next){
+	Album.findByIdAndRemove(req.params.id, function(err, result){
+		if (err){ next(err) };
+		res.redirect('/album');
+	});
+};
