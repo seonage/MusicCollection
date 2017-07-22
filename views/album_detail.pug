@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1 #{album.title}
+  
+  p #[strong Artist:] #{album.artist.artist_name}
+  
+  hr
+  p
+    a(href = album.url + '/delete') Delete album
