@@ -3,11 +3,12 @@ extends layout
 block content
   h1 #{album.title}
   
-  p #[strong Artist:] #{album.artist.artist_name}
+  p #[strong Artist:]
+    a(href = album.artist.url)  #{album.artist.artist_name}
   
   hr
-  p
+  p 
     a(href = album.url + '/delete') Delete album
     
-  p
+  p 
     a(href = '/album') Return to list of albums
