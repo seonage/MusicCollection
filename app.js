@@ -10,10 +10,28 @@ var expressValidator = require('express-validator');
 var index = require('./routes/index');
 var users = require('./routes/users');
 
-/*var mongoDB = 'mongodb://localhost/music';
-mongoose.connect(mongoDB);
+//For local database
+/*mongoose.connect('mongodb://localhost/test');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));*/
+
+const dbURI = "mongodb://admin:<PASSWORD>@cluster0-shard-00-00-hsep4.mongodb.net:27017,"+ 
+	"cluster0-shard-00-01-hsep4.mongodb.net:27017," +
+	"cluster0-shard-00-02-hsep4.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true";
+
+const options = {
+		reconnectTries: Number.MAX_VALUE,
+		poolSize: 10
+};
+
+mongoose.connect(dbURI, options).then(
+	() => {
+		console.log("Connection successful");
+	},
+	err => {
+		console.log("Error connecting: ", + err);
+	}
+);
 
 var app = express();
 
