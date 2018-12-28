@@ -6,7 +6,7 @@ exports.getArtistList = function(req, res, next){
 	  .sort([['artist_name', 'ascending']])
 	  .exec(function (err, list_artists){
 		 if (err) { return next(err)};
-		 res.render('artist_list', { title: 'Artist List', artist_list: list_artists});
+		 res.render('artist_list', { title: 'Artist List', artists_list: list_artists});
 	  });
 };
 
