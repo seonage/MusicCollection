@@ -4,6 +4,10 @@ var router = express.Router();
 var artistController = require('../controllers/artistController');
 var albumController = require('../controllers/albumController');
 
+router.get('/', function(req, res) {
+	  res.render('index', {title: 'Welcome to MusicCollection'});
+	});
+
 /* ARTISTS ROUTES */
 
 //Display all the artists in the database
