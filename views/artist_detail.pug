@@ -5,6 +5,12 @@ block content
   
   p #{artist.artist_biography}
   
+  h3 Albums
+    ul
+      for album in list_artist_albums
+        li
+          a(href=album.url) #{album.title}
+  
   hr
   p 
     a(href = artist.url + '/delete') Delete artist
