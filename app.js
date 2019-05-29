@@ -17,8 +17,6 @@ const options = {
         useMongoClient: true
 };
 
-//var mongoDB = 'mongodb+srv://admin:idontcare@cluster0-hsep4.mongodb.net/test?retryWrites=true"';
-//var mongoDB = 'mongodb://admin:idontcare@cluster0-hsep4.mongodb.net/test?retryWrites=true"';
 var mongoDB = "mongodb://admin:@cluster0-shard-00-00-hsep4.mongodb.net:27017,cluster0-shard-00-01-hsep4.mongodb.net:27017,cluster0-shard-00-02-hsep4.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true";
 mongoose.connect(mongoDB, options);
 var db = mongoose.connection;
