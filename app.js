@@ -6,32 +6,20 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var expressValidator = require('express-validator');
+const MongoClient = require('mongodb').MongoClient;
 
 var index = require('./routes/index');
 var users = require('./routes/users');
-
-//For local database
-/*mongoose.connect('mongodb://localhost/test');
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));*/
-
-const dbURI = "mongodb://admin:<PASSWORD>@cluster0-shard-00-00-hsep4.mongodb.net:27017,"+ 
-	"cluster0-shard-00-01-hsep4.mongodb.net:27017," +
-	"cluster0-shard-00-02-hsep4.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true";
 
 const options = {
 		reconnectTries: Number.MAX_VALUE,
 		poolSize: 10
 };
 
-mongoose.connect(dbURI, options).then(
-	() => {
-		console.log("Connection successful");
-	},
-	err => {
-		console.log("Error connecting: ", + err);
-	}
-);
+var mongoDB = 'mongodb+srv://admin:<PASSWORD>@cluster0-hsep4.mongodb.net/test?retryWrites=true"';
+mongoose.connect(mongoDB, { useNewUrlParser: true });
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 var app = express();
 

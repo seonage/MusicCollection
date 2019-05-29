@@ -13,7 +13,9 @@
     "express": "^4.13.4",
     "express-validator": "^3.2.0",
     "moment": "^2.18.1",
-    "mongoose": "^4.10.5",
+    "mongod": "^2.0.0",
+    "mongodb": "^3.2.6",
+    "mongoose": "^4.13.18",
     "morgan": "~1.6.1",
     "pug": "^2.0.0-beta11",
     "serve-favicon": "~2.3.0"
