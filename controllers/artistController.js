@@ -2,12 +2,21 @@ var Artist = require('../models/artist');
 var Album = require('../models/album');
 
 //Find all the artists in the database and then displays them in a list on a page
-exports.getArtistList = function(req, res, next){
+/*exports.getArtistList = function(req, res, next){
 	Artist.find()
 	  .sort([['artist_name', 'ascending']])
 	  .exec(function (err, list_artists){
 		 if (err) { return next(err) };
 		 res.render('artist_list', { title: 'Artist List', artists_list: list_artists});
+	  });
+};*/
+
+exports.getArtistList = function(req, res, next){
+	Artist.find()
+	  .sort([['artist_name', 'ascending']])
+	  .exec(function (err, artists){
+		 if (err) { return next(err) };
+		 res.json(artists)
 	  });
 };
 
