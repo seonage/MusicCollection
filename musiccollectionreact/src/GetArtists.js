@@ -20,7 +20,7 @@ class GetArtists extends Component{
             <h2>Artists</h2>
             <ul>
                 {this.state.artists.map(artist => 
-                    <li key={artist._id}>{artist.artist_name}</li>
+                    <li key={artist._id}><a href= {'artist/' + artist._id}>{artist.artist_name}</a></li>
                 )}
             </ul>
         </div>
