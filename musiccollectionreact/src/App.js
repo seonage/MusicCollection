@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import GetArtists from './GetArtists'
+import GetArtists from './Components/GetArtists'
 
 class App extends Component {
   render() {
