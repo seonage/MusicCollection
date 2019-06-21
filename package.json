@@ -3,8 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node app.js",
-    "server": "nodemon server.js",
+    "start": "nodemon app.js",
     "client": "npm start --prefix musiccollectionreact",
     "dev": "concurrently \"npm start\" \"npm run client\""
   },
