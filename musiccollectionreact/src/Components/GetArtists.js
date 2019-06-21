@@ -23,7 +23,7 @@ class GetArtists extends Component{
                     <li key={artist._id}><a href= {'artist/' + artist._id}>{artist.artist_name}</a></li>
                 )}
             </ul>
-        </div>
+            </div>
         )
     }
 }

@@ -21,7 +21,7 @@ exports.getArtistList = function(req, res, next){
 };
 
 //Find the details of an artist and displays the information on an page
-exports.getArtistDetail = function(req, res, next){
+/*exports.getArtistDetail = function(req, res, next){
 	Artist.findById(req.params.id, function (err, result){
 		if (err) { return next(err) };
 		//Find all the albums that have been released by the artist
@@ -31,6 +31,20 @@ exports.getArtistDetail = function(req, res, next){
 			  if (err) { return next(err) };
 			  console.log(list_artist_albums);
 			  res.render('artist_detail', { title: result.artist_name, artist: result, list_artist_albums: list_artist_albums });
+		  });
+	});
+};*/
+
+exports.getArtistDetail = function(req, res, next){
+	Artist.findById(req.params.id, function (err, result){
+		if (err) { return next(err) };
+		//Find all the albums that have been released by the artist
+		Album.find( {artist: req.params.id} )
+		  .sort([['title','ascending']])
+		  .exec(function (err, list_artist_albums){
+			  if (err) { return next(err) };
+			  console.log(list_artist_albums);
+			  res.json(list_artist_albums);
 		  });
 	});
 };
