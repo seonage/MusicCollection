@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 
 class Artist extends Component{
     constructor(props) {
@@ -27,6 +28,7 @@ class Artist extends Component{
                     <li key={artist._id}>{artist.title}</li>
                 )}
             </ul>
+            <Link to= '/'>Return to list of artists</Link>
             </div>
         )
     }
