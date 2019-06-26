@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from "react-router-dom";
 
 class GetArtists extends Component{
     constructor() {
@@ -20,7 +21,7 @@ class GetArtists extends Component{
             <h2>Artists</h2>
             <ul>
                 {this.state.artists.map(artist => 
-                    <li key={artist._id}><a href= {'artist/' + artist._id}>{artist.artist_name}</a></li>
+                    <li key={artist._id}><Link to= {'artist/' + artist._id}>{artist.artist_name}</Link></li>
                 )}
             </ul>
             </div>
