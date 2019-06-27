@@ -18,13 +18,14 @@ exports.getAlbumList = function(req, res, next){
 		res.render('album_detail', {title: result.title, album: result});
 	});
 };*/
+
 exports.getAlbumDetail = function(req, res, next){
 	Album
 	  .findById(req.params.id)
 	  .populate('artist')
 	  .exec(function (err, album){
 		 if(err){ return next(err) };
-		 res.render('album_detail', { title: album.title, album: album });
+		 res.render('album_detail', { album: album });
 	  });
 };
 
