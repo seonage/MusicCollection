@@ -4,6 +4,8 @@ import './App.css';
 import GetArtists from './Components/GetArtists';
 import Artist from './Components/Artist';
 import Album from './Components/Album';
+import CreateArtist from './Components/CreateArtist';
+
 
 class App extends Component {
   render() {
@@ -13,6 +15,7 @@ class App extends Component {
         <Route exact path = "/" component = { GetArtists } />
         <Route path = "/artist/:artistID" component = { Artist }/>
         <Route path = "/album/:albumID" component = { Album }/>
+        <CreateArtist/>
       </div>
       </Router>
     );
