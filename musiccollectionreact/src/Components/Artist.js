@@ -24,8 +24,8 @@ class Artist extends Component{
             <div>
             <h2>Albums</h2>
             <ul>
-                {this.state.artistInfo.map(artist => 
-                    <li key={artist._id}>{artist.title}</li>
+                {this.state.artistInfo.map(album => 
+                    <li key={album._id}><Link to = {'../album/' + album._id}>{album.title}</Link></li>
                 )}
             </ul>
             <Link to= '/'>Return to list of artists</Link>

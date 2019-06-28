@@ -25,7 +25,7 @@ exports.getAlbumDetail = function(req, res, next){
 	  .populate('artist')
 	  .exec(function (err, album){
 		 if(err){ return next(err) };
-		 res.render('album_detail', { album: album });
+		 res.json(album);
 	  });
 };
 
