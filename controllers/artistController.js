@@ -38,13 +38,13 @@ exports.getArtistList = function(req, res, next){
 exports.getArtistDetail = function(req, res, next){
 	Artist.findById(req.params.id, function (err, result){
 		if (err) { return next(err) };
+
 		//Find all the albums that have been released by the artist
 		Album.find( {artist: req.params.id} )
 		  .sort([['title','ascending']])
 		  .exec(function (err, list_artist_albums){
 			  if (err) { return next(err) };
-			  console.log(list_artist_albums);
-			  res.json(list_artist_albums);
+			  res.json({albums: list_artist_albums, artist_biography: result.artist_biography});
 		  });
 	});
 };
