@@ -9,9 +9,12 @@ class Artist extends Component{
             artistAlbums: [],
             artistBiography: []
         }
+
+        this.deleteArtist = this.deleteArtist.bind(this);
 }
 
     componentDidMount() {
+        console.log(this.state.artistID)
         let artistURI = '/artist/' + this.state.artistID;
 
         fetch(artistURI)
@@ -23,6 +26,18 @@ class Artist extends Component{
         .then(res => res.json())
         .then(body => this.setState({artistAlbums: body.albums}))
         .catch(error => console.log(error))
+    }
+
+    deleteArtist() {
+        let artistURI = '/artist/' + this.state.artistID + '/delete';
+
+        fetch(artistURI, {
+            method: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+              }
+        })
     }
 
     render() {
@@ -37,6 +52,7 @@ class Artist extends Component{
                 )}
                 </ul>
             <Link to= '/'>Return to list of artists</Link>
+            <button onClick = {this.deleteArtist}>Delete Artist</button>
             </div>
             
         )

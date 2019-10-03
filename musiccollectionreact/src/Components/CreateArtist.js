@@ -7,6 +7,7 @@ class CreateArtist extends Component {
 
         this.handleArtistNameChange = this.handleArtistNameChange.bind(this);
         this.handleArtistBiographyChange = this.handleArtistBiographyChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleArtistNameChange(event) {
@@ -17,11 +18,27 @@ class CreateArtist extends Component {
         this.setState({artistBiography: event.target.value});
     }
 
+    handleSubmit(event){
+        fetch('/artist/create', {
+            method: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+              },
+            body: JSON.stringify({
+                artistName: this.state.artistName,
+                artistBiography: this.state.artistBiography
+            })
+        })
+
+        event.preventDefault();
+    }
+
     render() {
         return (
             <div>
                 <h3>Add New Artist</h3>
-                <form action="/artist/create" method="POST">
+                <form onSubmit={this.handleSubmit}>
                 <label>Artist Name
                     <input type="text" name="artistName" value={this.state.artistName} onChange={this.handleArtistNameChange}/>
                 </label>

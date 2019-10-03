@@ -1,6 +1,8 @@
 var Artist = require('../models/artist');
 var Album = require('../models/album');
 
+//const { check, validationResult } = require('express-validator');
+
 //Find all the artists in the database and then displays them in a list on a page
 /*exports.getArtistList = function(req, res, next){
 	Artist.find()
@@ -55,15 +57,16 @@ exports.createArtistGet = function(req, res, next){
 };
 
 //POST the data needed to create a new artist entry in the database
-exports.createArtistPost = function(req, res, next){
+/*exports.createArtistPost = function(req, res, next){
 	req.checkBody('artist_name', 'You must enter a name for the artist').notEmpty();
+	check(req.body.artist_name).notEmpty();
 	
 	req.sanitize('artist_name').escape();
 	req.sanitize('artist_biography').escape();
 	req.sanitize('artist_name').trim();
 	req.sanitize('artist_biography').trim();
 	
-	var errors = req.validationErrors();
+	var errors = req.validationResult(req);
 	
 	var artist = new Artist({
 		artist_name: req.body.artist_name,
@@ -82,6 +85,21 @@ exports.createArtistPost = function(req, res, next){
 			res.redirect('/artist');
 		})
 	}
+};*/
+
+exports.createArtistPost = function(req, res, next){
+
+	var artist = new Artist({
+		artist_name: req.body.artistName,
+		artist_biography: req.body.artistBiography
+	})
+
+	console.log('New artist added: ' + artist);
+
+	artist.save(function(err){
+		if (err) return console.error(err);
+		res.redirect('/');
+	})
 };
 
 //GET the form that allows an artist to be deleted from the database
@@ -96,6 +114,6 @@ exports.deleteArtistGet = function(req, res, next){
 exports.deleteArtistPost = function(req, res, next){
 	Artist.findByIdAndRemove(req.params.id, function(err, result){
 		if(err) { return next(err) };
-		res.redirect('/artist')
+		res.redirect('/')
 	});
 };
