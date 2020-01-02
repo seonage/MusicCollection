@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Redirect } from "react-router-dom";
 
 class CreateArtist extends Component {
     constructor(props) {
@@ -31,7 +30,6 @@ class CreateArtist extends Component {
                 artistBiography: this.state.artistBiography
             })
         })
-        return <Redirect to='/'/>
     }
 
     render() {
