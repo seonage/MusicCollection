@@ -14,7 +14,6 @@ class Artist extends Component{
 }
 
     componentDidMount() {
-        console.log(this.state.artistID)
         let artistURI = '/artist/' + this.state.artistID;
 
         fetch(artistURI)
@@ -38,6 +37,8 @@ class Artist extends Component{
                 'Content-Type': 'application/json',
               }
         })
+        .then(this.props.history.push('/'))
+
     }
 
     render() {
@@ -50,7 +51,7 @@ class Artist extends Component{
                 {this.state.artistAlbums.map(album => 
                     <li key={album._id}><Link to = {'../album/' + album._id}>{album.title}</Link></li>
                 )}
-                </ul>
+            </ul>
             <Link to= '/'>Return to list of artists</Link>
             <button onClick = {this.deleteArtist}>Delete Artist</button>
             </div>
