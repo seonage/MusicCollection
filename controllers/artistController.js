@@ -98,7 +98,6 @@ exports.createArtistPost = function(req, res, next){
 
 	artist.save(function(err){
 		if (err) return console.error(err);
-		res.redirect('/');
 	})
 };
 
@@ -114,6 +113,5 @@ exports.deleteArtistGet = function(req, res, next){
 exports.deleteArtistPost = function(req, res, next){
 	Artist.findByIdAndRemove(req.params.id, function(err, result){
 		if(err) { return next(err) };
-		res.redirect('/')
 	});
 };
