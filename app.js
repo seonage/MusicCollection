@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var expressValidator = require('express-validator');
+const {check, validationResult} = require('express-validator');
 const MongoClient = require('mongodb').MongoClient;
 
 var index = require('./routes/index');
@@ -14,7 +14,6 @@ var users = require('./routes/users');
 const options = {
 		reconnectTries: Number.MAX_VALUE,
         poolSize: 10,
-        useMongoClient: true
 };
 
 var mongoDB = "mongodb://admin:<>@cluster0-shard-00-00-hsep4.mongodb.net:27017,cluster0-shard-00-01-hsep4.mongodb.net:27017,cluster0-shard-00-02-hsep4.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true";
@@ -40,7 +39,6 @@ app.set('view engine', 'pug');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(expressValidator());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
