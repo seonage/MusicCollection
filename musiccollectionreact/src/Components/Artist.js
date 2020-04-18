@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Link } from "react-router-dom";
+import EditArtist from './EditArtist'
 
 class Artist extends Component{
     constructor(props) {
@@ -7,7 +8,8 @@ class Artist extends Component{
         this.state ={
             artistID: props.match.params.artistID,
             artistAlbums: [],
-            artistBiography: []
+            artistBiography: [],
+            editMode: false
         }
 
         this.deleteArtist = this.deleteArtist.bind(this);
@@ -44,21 +46,27 @@ class Artist extends Component{
     render() {
         return(
             <div>
-            <h2>Artist Biography</h2>
-            {this.state.artistBiography}
-            <h2>Albums</h2>
-            <ul>
-                {this.state.artistAlbums.map(album => 
-                    <li key={album._id}><Link to = {'../album/' + album._id}>{album.title}</Link></li>
+                {this.state.editMode ? (
+                    <Fragment>
+                        <EditArtist/>
+                    </Fragment>
+                ) : (
+                    <Fragment>
+                        <h2>Artist Biography</h2>
+                        {this.state.artistBiography}
+                        <h2>Albums</h2>
+                            <ul>
+                            {   this.state.artistAlbums.map(album => 
+                                <li key={album._id}><Link to = {'../album/' + album._id}>{album.title}</Link></li>
+                            )}
+                            </ul>
+                        <Link to= '/'>Return to list of artists</Link>
+                        <button onClick = {this.deleteArtist}>Delete Artist</button>
+                    </Fragment>
+                    
                 )}
-            </ul>
-            <Link to= '/'>Return to list of artists</Link>
-            <button onClick = {this.deleteArtist}>Delete Artist</button>
             </div>
-            
-        )
-    }
-
+        )}
 }
 
-export default Artist;
+export default Artist

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route} from "react-router-dom";
 import './App.css';
-import GetArtists from './Components/GetArtists';
 import Artist from './Components/Artist';
 import Album from './Components/Album';
 import CreateArtist from './Components/CreateArtist';
+import EditArtist from './Components/EditArtist';
+import GetArtists from './Components/GetArtists';
 
 
 class App extends Component {
