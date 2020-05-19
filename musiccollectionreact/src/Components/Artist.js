@@ -46,7 +46,13 @@ class Artist extends Component{
     render() {
         return(
             <div>
-                <h2>Artist Biography</h2>
+                {this.state.editMode ? (
+                    <Fragment>
+                        <EditArtist/>
+                    </Fragment>
+                ) : (
+                    <Fragment>
+                        <h2>Artist Biography</h2>
                         {this.state.artistBiography}
                         <h2>Albums</h2>
                             <ul>
@@ -56,8 +62,12 @@ class Artist extends Component{
                             </ul>
                         <Link to= '/'>Return to list of artists</Link>
                         <button onClick = {this.deleteArtist}>Delete Artist</button>
+                    </Fragment>
+
+                )}
             </div>
-        )}
+        )
+    }
 }
 
 export default Artist
