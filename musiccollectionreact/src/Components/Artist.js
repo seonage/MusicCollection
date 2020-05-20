@@ -9,7 +9,7 @@ class Artist extends Component{
             artistID: props.match.params.artistID,
             artistAlbums: [],
             artistBiography: [],
-            editMode: false
+            editMode: true
         }
 
         this.deleteArtist = this.deleteArtist.bind(this);
@@ -48,7 +48,7 @@ class Artist extends Component{
             <div>
                 {this.state.editMode ? (
                     <Fragment>
-                        <EditArtist/>
+                        <EditArtist artistInformation = {this.state}/>
                     </Fragment>
                 ) : (
                     <Fragment>

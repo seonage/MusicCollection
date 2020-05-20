@@ -1,15 +1,11 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react'
 
-class EditArtist extends Component {
-    constructor(props) {
-        super(props)
-    }
+const EditArtist = props => {
+    const [ artist, setArtist ] = useState(props.artistInformation)
 
-    render() {
-        return (
-            <h2>EditArtist</h2>
-        )
-    }
+    return(
+        <div>Hello</div>
+    )
 }
 
 export default EditArtist
