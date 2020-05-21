@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from "react-router-dom";
-import EditArtist from './EditArtist'
 
 class Artist extends Component{
     constructor(props) {
@@ -8,10 +7,11 @@ class Artist extends Component{
         this.state ={
             artistID: props.match.params.artistID,
             artistAlbums: [],
-            artistBiography: [],
-            editMode: true
+            artistBiography: '',
+            editMode: false
         }
 
+        this.editArtist = this.editArtist.bind(this)
         this.deleteArtist = this.deleteArtist.bind(this);
 }
 
@@ -27,6 +27,14 @@ class Artist extends Component{
         .then(res => res.json())
         .then(body => this.setState({artistAlbums: body.albums}))
         .catch(error => console.log(error))
+    }
+
+    componentDidUpdate() {
+
+    }
+
+    editArtist() {
+        return (this.state.editMode ? this.setState({editMode: false}) : this.setState({editMode: true}))
     }
 
     deleteArtist() {
@@ -48,7 +56,11 @@ class Artist extends Component{
             <div>
                 {this.state.editMode ? (
                     <Fragment>
-                        <EditArtist artistInformation = {this.state}/>
+                        <form>
+                            <h2>Artist Biography</h2>
+                            <input type="text" name="artistBiography" value={this.state.artistBiography} />
+                            <button onClick = {(this.editArtist)}>Cancel Editing</button>
+                        </form>
                     </Fragment>
                 ) : (
                     <Fragment>
@@ -61,6 +73,7 @@ class Artist extends Component{
                             )}
                             </ul>
                         <Link to= '/'>Return to list of artists</Link>
+                        <button onClick = {this.editArtist}>Edit Artist</button>
                         <button onClick = {this.deleteArtist}>Delete Artist</button>
                     </Fragment>
 
