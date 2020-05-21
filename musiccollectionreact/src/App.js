@@ -4,7 +4,6 @@ import './App.css';
 import Artist from './Components/Artist';
 import Album from './Components/Album';
 import CreateArtist from './Components/CreateArtist';
-import EditArtist from './Components/EditArtist';
 import GetArtists from './Components/GetArtists';
 
 
