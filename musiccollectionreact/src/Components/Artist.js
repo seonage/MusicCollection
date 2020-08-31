@@ -13,6 +13,7 @@ class Artist extends Component{
 
         this.editArtist = this.editArtist.bind(this)
         this.deleteArtist = this.deleteArtist.bind(this);
+        this.handleChange = this.handleChange.bind(this);
 }
 
     componentDidMount() {
@@ -27,10 +28,6 @@ class Artist extends Component{
         .then(res => res.json())
         .then(body => this.setState({artistAlbums: body.albums}))
         .catch(error => console.log(error))
-    }
-
-    componentDidUpdate() {
-
     }
 
     editArtist() {
@@ -51,6 +48,10 @@ class Artist extends Component{
 
     }
 
+    handleChange(event) {
+        this.setState({artistBiography: event.target.value})
+    }
+
     render() {
         return(
             <div>
@@ -58,7 +59,7 @@ class Artist extends Component{
                     <Fragment>
                         <form>
                             <h2>Artist Biography</h2>
-                            <input type="text" name="artistBiography" value={this.state.artistBiography} />
+                            <input type="text" name="artistBiography" value={this.state.artistBiography} onChange={this.handleChange} />
                             <button onClick = {(this.editArtist)}>Cancel Editing</button>
                         </form>
                     </Fragment>
