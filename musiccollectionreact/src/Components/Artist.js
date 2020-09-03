@@ -14,6 +14,7 @@ class Artist extends Component{
         this.editArtist = this.editArtist.bind(this)
         this.deleteArtist = this.deleteArtist.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleEditSubmit = this.handleEditSubmit.bind(this);
 }
 
     componentDidMount() {
@@ -52,6 +53,21 @@ class Artist extends Component{
         this.setState({artistBiography: event.target.value})
     }
 
+    handleEditSubmit(event) {
+        let artistURI = '/artist/' + this.state.artistID + '/edit';
+
+        fetch('/artist/create', { /* Need to create route for editing an artist on the Express backend */
+            method: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                artistBiography: this.state.artistBiography
+            })
+        })
+    }
+
     render() {
         return(
             <div>
@@ -60,6 +76,7 @@ class Artist extends Component{
                         <form>
                             <h2>Artist Biography</h2>
                             <input type="text" name="artistBiography" value={this.state.artistBiography} onChange={this.handleChange} />
+                            <button>Submit Changes</button>
                             <button onClick = {(this.editArtist)}>Cancel Editing</button>
                         </form>
                     </Fragment>
