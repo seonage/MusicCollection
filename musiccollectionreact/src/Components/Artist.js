@@ -11,7 +11,7 @@ class Artist extends Component{
             editMode: false
         }
 
-        this.editArtist = this.editArtist.bind(this)
+        this.toggleEditMode = this.toggleEditMode.bind(this)
         this.deleteArtist = this.deleteArtist.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleEditSubmit = this.handleEditSubmit.bind(this);
@@ -31,7 +31,7 @@ class Artist extends Component{
         .catch(error => console.log(error))
     }
 
-    editArtist() {
+    toggleEditMode() {
         return (this.state.editMode ? this.setState({editMode: false}) : this.setState({editMode: true}))
     }
 
@@ -77,7 +77,7 @@ class Artist extends Component{
                             <h2>Artist Biography</h2>
                             <input type="text" name="artistBiography" value={this.state.artistBiography} onChange={this.handleChange} />
                             <button>Submit Changes</button>
-                            <button onClick = {(this.editArtist)}>Cancel Editing</button>
+                            <button onClick = {(this.toggleEditMode)}>Cancel Editing</button>
                         </form>
                     </Fragment>
                 ) : (
@@ -91,7 +91,7 @@ class Artist extends Component{
                             )}
                             </ul>
                         <Link to= '/'>Return to list of artists</Link>
-                        <button onClick = {this.editArtist}>Edit Artist</button>
+                        <button onClick = {this.toggleEditMode}>Edit Artist</button>
                         <button onClick = {this.deleteArtist}>Delete Artist</button>
                     </Fragment>
 
