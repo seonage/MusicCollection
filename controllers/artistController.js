@@ -51,6 +51,25 @@ exports.getArtistDetail = function(req, res, next){
 	});
 };
 
+//Find an artist and then edit a characteristic of the artist
+exports.editArtist = function(req, res, next){
+	/*const editedArtist = Artist.findById(req.params.id, function (err, result){
+		if (err) { return next(err) }
+		console.log("Artist id is: " + req.params.id);
+		console.log("Artist biography:" + req.body.artistBiography)
+
+	})
+
+	console.log(editedArtist);*/
+
+	Artist.findByIdAndUpdate(req.params.id, { artist_biography: req.body.artistBiography }, (result,err) => {
+		if (err){
+			return next(err);
+		}
+	});
+	
+}
+
 //GET the form that allows new artists to be created
 exports.createArtistGet = function(req, res, next){
 	res.render('artist_create', { title: 'Create Artist' });
@@ -88,6 +107,8 @@ exports.createArtistGet = function(req, res, next){
 };*/
 
 exports.createArtistPost = function(req, res, next){
+
+	console.log('Req:' + req.body.artistBiography);
 
 	var artist = new Artist({
 		artist_name: req.body.artistName,

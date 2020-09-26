@@ -54,9 +54,9 @@ class Artist extends Component{
     }
 
     handleEditSubmit(event) {
-        let artistURI = '/artist/' + this.state.artistID + '/edit';
+        let artistURI = '/artist/' + this.state.artistID;
 
-        fetch('/artist/create', { /* Need to create route for editing an artist on the Express backend */
+        fetch(artistURI, { /* Need to create route for editing an artist on the Express backend */
             method: "POST",
             headers: {
                 'Accept': 'application/json',
@@ -66,6 +66,7 @@ class Artist extends Component{
                 artistBiography: this.state.artistBiography
             })
         })
+        //.then(this.props.history.push('/'))
     }
 
     render() {
@@ -76,7 +77,7 @@ class Artist extends Component{
                         <form>
                             <h2>Artist Biography</h2>
                             <input type="text" name="artistBiography" value={this.state.artistBiography} onChange={this.handleChange} />
-                            <button>Submit Changes</button>
+                            <button onClick = {(this.handleEditSubmit)}>Submit Changes</button>
                             <button onClick = {(this.toggleEditMode)}>Cancel Editing</button>
                         </form>
                     </Fragment>

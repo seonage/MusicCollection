@@ -28,6 +28,9 @@ router.get('/artist/:id/delete', artistController.deleteArtistGet);
 //POST the request to delete an artist from the database
 router.post('/artist/:id/delete', artistController.deleteArtistPost);
 
+//Find an artist and then edit the artist
+router.post('/artist/:id/', artistController.editArtist);
+
 /* ALBUM ROUTES */
 
 //Displays all the albums in the database
