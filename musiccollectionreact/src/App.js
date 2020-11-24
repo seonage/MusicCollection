@@ -5,6 +5,7 @@ import Artist from './Components/Artist';
 import Album from './Components/Album';
 import CreateArtist from './Components/CreateArtist';
 import GetArtists from './Components/GetArtists';
+import CreateAlbum from './Components/CreateAlbum';
 
 
 class App extends Component {
@@ -16,6 +17,7 @@ class App extends Component {
         <Route path = "/artist/:artistID" component = { Artist }/>
         <Route path = "/album/:albumID" component = { Album }/>
         <CreateArtist/>
+        <CreateAlbum/>
       </div>
       </Router>
     );
