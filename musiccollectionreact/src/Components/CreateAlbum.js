@@ -3,7 +3,9 @@ import React, { Component } from 'react';
 class CreateAlbum extends Component {
     constructor(props) {
         super(props);
-        this.state = { newArtistName: '', newAlbumName: '', artists: [] };
+        this.state = { artistName: '', newAlbumName: '', artists: [] };
+
+        this.artistSelect = this.artistSelect.bind(this);
     }
 
     componentDidMount() {
@@ -13,15 +15,32 @@ class CreateAlbum extends Component {
         .catch(error => console.log(error))
     }
 
+    handleSubmit(event) {
+        /*fetch('album/create', {
+            method: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                artist: this.state.artistName
+            })
+        })*/
+    }
+
+    artistSelect(event) {
+        this.setState({artistName: event.target.value});
+    }
+
     render() {
         let artists = this.state.artists;
-        let artistOptions = artists.map( (artist) => <option key = {artist._id}>{artist.artist_name}
-        </option>);
+        let artistOptions = artists.map( (artist) => <option key = {artist._id} 
+        value = {artist.artist_name}>{artist.artist_name}</option>);
 
         return (
             <div>
                 <h3>Add New Album</h3>
-                <form onSubmit = {this.handleSubmit}>
+                <form onSubmit = {this.handleSubmit} onChange = {this.artistSelect}>
                     <label>Select Artist
                         <select>
                             {artistOptions}
