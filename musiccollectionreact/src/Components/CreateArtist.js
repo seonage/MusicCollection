@@ -18,7 +18,7 @@ class CreateArtist extends Component {
         this.setState({artistBiography: event.target.value});
     }
 
-    handleSubmit(event){
+    handleSubmit(event) {
         fetch('/artist/create', {
             method: "POST",
             headers: {
