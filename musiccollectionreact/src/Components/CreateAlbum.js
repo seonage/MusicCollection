@@ -12,7 +12,8 @@ class CreateAlbum extends Component {
     componentDidMount() {
         fetch('/artist')
         .then(res => res.json())
-        .then(body => this.setState({artists: body}, console.log('Fetched: ', body)))
+        .then(body => this.setState({artists: body, artistName: body[0].artist_name}, console.log('Fetched: ' , body)))
+        .then(this.setState({artistName: this.state.artists[0]}), console.log("first?"))
         .catch(error => console.log(error))
     }
 
