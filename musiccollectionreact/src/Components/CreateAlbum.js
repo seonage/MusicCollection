@@ -7,13 +7,14 @@ class CreateAlbum extends Component {
 
         this.handleArtistSelect = this.handleArtistSelect.bind(this);
         this.handleAlbumNameChange = this.handleAlbumNameChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount() {
         fetch('/artist')
         .then(res => res.json())
         .then(body => this.setState({artists: body, artistName: body[0].artist_name}, console.log('Fetched: ' , body)))
-        .then(this.setState({artistName: this.state.artists[0]}), console.log("first?"))
+        .then(this.setState({artistName: this.state.artists[0]}))
         .catch(error => console.log(error))
     }
 
@@ -26,16 +27,17 @@ class CreateAlbum extends Component {
     }
 
     handleSubmit(event) {
-        /*fetch('album/create', {
+        fetch('album/create', {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                artist: this.state.artistName
+                artist: this.state.artistName,
+                album: this.state.newAlbumName
             })
-        })*/
+        })
     }
 
     render() {

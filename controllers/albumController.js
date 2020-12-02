@@ -2,6 +2,15 @@ var Album = require('../models/album');
 var Artist = require('../models/artist');
 
 //Find all the artists in the database and then displays them in a list on a page
+/*exports.getAlbumList = function(req, res, next){
+	Album.find()
+	  .sort([['title', 'ascending']])
+	  .exec(function (err, list_albums){
+		 if (err) { return next(err)};
+		 res.render('album_list', { title: 'Album List', albums_list: list_albums});
+	  });
+};*/
+
 exports.getAlbumList = function(req, res, next){
 	Album.find()
 	  .sort([['title', 'ascending']])
@@ -41,12 +50,14 @@ exports.createAlbumGet = function(req, res, next){
 };
 
 //POST the data needed to create a new album in the database
-exports.createAlbumPost = function(req, res, next){
+/*exports.createAlbumPost = function(req, res, next){
 	req.checkBody('artist', 'An artist must be selected').notEmpty();
 	req.checkBody('album_title', 'An album title must be provided').notEmpty();
 	
 	req.sanitize('artist').escape();
 	req.sanitize('album_title').escape();
+
+	console.log("The req contains: " + req.body._id);
 	
 	var album = new Album({
 		artist: req.body.artist,
@@ -71,6 +82,31 @@ exports.createAlbumPost = function(req, res, next){
 			res.redirect('/album');
 		})
 	};
+
+	album.save(function (err){
+		if (err){ return next(err) };
+		console.log("New album added: " + album);
+		res.redirect('/album');
+	})
+};*/
+
+exports.createAlbumPost = function(req, res, next){
+
+	console.log('Req:' + req.body.album);
+
+	
+	
+	var album = new Album({
+		artist: req.body.artist,
+		title: req.body.album
+	});
+	console.log(album);
+	
+	album.save(function (err){
+		if (err){ return next(err) };
+		console.log("New album added: " + album);
+		res.redirect('/album');
+	})
 };
 
 //GET the form that allows for an album to be deleted
