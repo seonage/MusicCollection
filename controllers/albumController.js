@@ -50,64 +50,56 @@ exports.createAlbumGet = function(req, res, next){
 };
 
 //POST the data needed to create a new album in the database
-/*exports.createAlbumPost = function(req, res, next){
-	req.checkBody('artist', 'An artist must be selected').notEmpty();
-	req.checkBody('album_title', 'An album title must be provided').notEmpty();
-	
-	req.sanitize('artist').escape();
-	req.sanitize('album_title').escape();
-
-	console.log("The req contains: " + req.body._id);
-	
-	var album = new Album({
-		artist: req.body.artist,
-		title: req.body.album_title
-	});
-	console.log(album);
-	
-	var errors = req.validationErrors();
-	if (errors){
-		console.log(errors);
-		Artist.find()
-		  .sort([['artist_name', 'ascending']])
-		  .exec(function(err, artist_list){
-			  if (err){ return next(err) };
-			  res.render('album_create', { title: 'Create album', artist_list: artist_list } );
-		  });
-	}
-	else {
-		album.save(function (err){
-			if (err){ return next(err) };
-			console.log("New album added: " + album);
-			res.redirect('/album');
-		})
-	};
-
-	album.save(function (err){
-		if (err){ return next(err) };
-		console.log("New album added: " + album);
-		res.redirect('/album');
-	})
-};*/
-
 exports.createAlbumPost = function(req, res, next){
 
-	console.log('Req:' + req.body.album);
-
-	
-	
 	var album = new Album({
 		artist: req.body.artist,
 		title: req.body.album
 	});
-	console.log(album);
-	
+
+	console.log(album)
+
 	album.save(function (err){
 		if (err){ return next(err) };
 		console.log("New album added: " + album);
 		res.redirect('/album');
 	})
 };
+
+/*exports.createAlbumPost = function(req, res, next){
+
+	console.log('Req:' + req.body.album);
+
+	var album = new Album({
+		artist: req.body.artist,
+		title: req.body.album
+	});
+	console.log(album);
+
+	album.save(function (err){
+		if (err){ return next(err) };
+	})
+
+	/*var album = new Album({
+		title: "Otona no ko",
+		//artist: ObjectID("5e0cd164850dab3418d88fee")
+		artist:"Beyooooonds"
+	});
+	console.log(album);
+
+	album.save(function (err){
+		if (err){ return next(err) };
+	})*/
+
+	/*var artist = new Artist({
+		artist_name: "please work",
+		artist_biography: "this should work"
+	})
+
+	artist.save(function(err){
+		if (err) return console.error(err);
+	})
+};*/
 
 //GET the form that allows for an album to be deleted
 exports.getAlbumDelete = function(req, res, next){

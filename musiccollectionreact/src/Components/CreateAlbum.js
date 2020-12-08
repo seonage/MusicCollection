@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class CreateAlbum extends Component {
     constructor(props) {
         super(props);
-        this.state = { artistName: '', newAlbumName: '', artists: [] };
+        this.state = { artistID: '', newAlbumName: '', artists: [] };
 
         this.handleArtistSelect = this.handleArtistSelect.bind(this);
         this.handleAlbumNameChange = this.handleAlbumNameChange.bind(this);
@@ -13,8 +13,8 @@ class CreateAlbum extends Component {
     componentDidMount() {
         fetch('/artist')
         .then(res => res.json())
-        .then(body => this.setState({artists: body, artistName: body[0].artist_name}, console.log('Fetched: ' , body)))
-        .then(this.setState({artistName: this.state.artists[0]}))
+        .then(body => this.setState({artists: body, artistID: body[0]._id}))
+        .then(this.setState({artistID: this.state.artists[0]}))
         .catch(error => console.log(error))
     }
 
@@ -23,18 +23,18 @@ class CreateAlbum extends Component {
     }
 
     handleArtistSelect(event) {
-        this.setState({artistName: event.target.value});
+        this.setState({artistID: event.target.value});
     }
 
     handleSubmit(event) {
-        fetch('album/create', {
+        fetch('/album/create', {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                artist: this.state.artistName,
+                artist: this.state.artistID,
                 album: this.state.newAlbumName
             })
         })
@@ -43,7 +43,7 @@ class CreateAlbum extends Component {
     render() {
         let artists = this.state.artists;
         let artistOptions = artists.map( (artist) => <option key = {artist._id} 
-        value = {artist.artist_name}>{artist.artist_name}</option>);
+        value = {artist._id}>{artist.artist_name}</option>);
 
         return (
             <div>
