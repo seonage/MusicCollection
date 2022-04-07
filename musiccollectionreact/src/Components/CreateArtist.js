@@ -34,18 +34,18 @@ class CreateArtist extends Component {
 
     render() {
         return (
-            <div>
+            <div className = "App">
                 <h3>Add New Artist</h3>
                 <form onSubmit={this.handleSubmit}>
                 <label>Artist Name
-                    <input type="text" name="artistName" value={this.state.artistName} onChange={this.handleArtistNameChange}/>
+                    <input type="text" name="artistName" className="input" value={this.state.artistName} onChange={this.handleArtistNameChange}/>
                 </label>
                 <br/>
                 <label>Biography
-                    <input type="text" name="artistBio" value={this.state.artistBiography} onChange={this.handleArtistBiographyChange}/>
+                    <input type="text" name="artistBio" className="input" value={this.state.artistBiography} onChange={this.handleArtistBiographyChange}/>
                 </label>
                 <br/>
-                <input type="submit" name="Submit"/>
+                <input type="submit" name="Submit" className="button"/>
                 </form>
             </div>
         )
