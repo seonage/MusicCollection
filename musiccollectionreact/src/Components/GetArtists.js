@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Link } from "react-router-dom";
+import { Link } from "@reach/router";
+import CreateArtist from './CreateArtist';
 
 class GetArtists extends Component{
     constructor() {
@@ -38,11 +39,12 @@ class GetArtists extends Component{
             <h2>Artists</h2>
             <label>Search For An Artist</label>
                 <input type="text" onChange={this.artistFilterOnChange} />
-            <ul>
+                <ul>
                 {filteredArtists.map(artist => 
                     <li key={artist._id}><Link to= {'artist/' + artist._id}>{artist.artist_name}</Link></li>
                 )}
             </ul>
+            <><CreateArtist /></>
             </div>
         )
     }

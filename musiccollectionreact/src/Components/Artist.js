@@ -1,11 +1,12 @@
 import React, { Component, Fragment } from 'react';
-import { Link } from "react-router-dom";
+import { Link } from "@reach/router";
+import CreateAlbum from './CreateAlbum';
 
 class Artist extends Component{
     constructor(props) {
         super(props);
         this.state ={
-            artistID: props.match.params.artistID,
+            artistID: props.artistID,
             artistAlbums: [],
             artistBiography: '',
             editMode: false
@@ -88,7 +89,7 @@ class Artist extends Component{
                         <h2>Albums</h2>
                             <ul>
                             {   this.state.artistAlbums.map(album => 
-                                <li key={album._id}><Link to = {'../album/' + album._id}>{album.title}</Link></li>
+                                <li key={album._id}><Link to = {'/album/' + album._id}>{album.title}</Link></li>
                             )}
                             </ul>
                         <Link to= '/'>Return to list of artists</Link>
@@ -97,6 +98,7 @@ class Artist extends Component{
                     </Fragment>
 
                 )}
+                <CreateAlbum />
             </div>
         )
     }

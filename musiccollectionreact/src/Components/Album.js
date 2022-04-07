@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
+import { Link } from "@reach/router";
 
 class Album extends Component{
     constructor(props) {
         super(props);
         this.state ={
-            albumID: props.match.params.albumID,
+            albumID: props.albumID,
             albumInfo: []
         }
 

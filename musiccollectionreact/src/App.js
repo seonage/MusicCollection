@@ -1,25 +1,25 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route} from "react-router-dom";
+import { Router, Link } from "@reach/router";
 import './App.css';
+//import 'bootstrap/dist/css/bootstrap.min.css';
+//import $ from 'jquery';
+//import Popper from 'popper.js';
+//import 'bootstrap/dist/js/bootstrap.bundle.min';
 import Artist from './Components/Artist';
 import Album from './Components/Album';
-import CreateArtist from './Components/CreateArtist';
 import GetArtists from './Components/GetArtists';
 import CreateAlbum from './Components/CreateAlbum';
-
 
 class App extends Component {
   render() {
     return (
-      <Router>
-      <div className="App">
-        <Route exact path = "/" component = { GetArtists } />
-        <Route path = "/artist/:artistID" component = { Artist }/>
-        <Route path = "/album/:albumID" component = { Album }/>
-        <CreateArtist/>
-        <CreateAlbum/>
+      <div>
+        <Router>
+          <GetArtists path= "/" />
+          <Artist path= "/artist/:artistID" />
+          <Album path= "/album/:albumID" />
+        </Router>
       </div>
-      </Router>
     );
   }
 }
