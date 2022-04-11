@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from "@reach/router";
+import { Link, navigate } from "@reach/router";
 
 class Album extends Component{
     constructor(props) {
@@ -33,7 +33,7 @@ class Album extends Component{
                 'Content-Type': 'application/json'
             }
         })
-        .then(this.props.history.push('/'));
+        .then(navigate("/"))
     }
 
     render() {

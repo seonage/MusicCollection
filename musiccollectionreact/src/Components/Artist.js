@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Link } from "@reach/router";
+import { Link, navigate } from "@reach/router";
 import CreateAlbum from './CreateAlbum';
 
 class Artist extends Component{
@@ -46,8 +46,7 @@ class Artist extends Component{
                 'Content-Type': 'application/json',
               }
         })
-        .then(this.props.history.push('/'))
-
+        .then(navigate("/"))
     }
 
     handleChange(event) {
@@ -67,7 +66,6 @@ class Artist extends Component{
                 artistBiography: this.state.artistBiography
             })
         })
-        //.then(this.props.history.push('/'))
     }
 
     render() {
