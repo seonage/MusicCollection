@@ -8,6 +8,9 @@ var mongoose = require('mongoose');
 const {check, validationResult} = require('express-validator');
 const MongoClient = require('mongodb').MongoClient;
 
+require('dotenv').config()
+const env = process.env.NODE_ENV;
+
 var index = require('./routes/index');
 var users = require('./routes/users');
 
@@ -19,7 +22,7 @@ const options = {
         useFindAndModify: false
 };
 
-var mongoDB = "mongodb://admin:<>@cluster0-shard-00-00-hsep4.mongodb.net:27017,cluster0-shard-00-01-hsep4.mongodb.net:27017,cluster0-shard-00-02-hsep4.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true";
+var mongoDB = process.env[`MONGO_DB_CONNECT`];
 mongoose.connect(mongoDB, options);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
