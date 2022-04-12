@@ -115,7 +115,7 @@ exports.createArtistPost = function(req, res, next){
 		artist_biography: req.body.artistBiography
 	})
 
-	console.log('New artist added: ' + artist);
+	console.log('New artist added: ' + artist.artist_name);
 
 	artist.save(function(err){
 		if (err) return console.error(err);
