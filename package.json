@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node app.js",
     "client": "npm start --prefix musiccollectionreact",
-    "dev": "concurrently \"npm start\" \"npm run client\""
+    "dev": "concurrently \"nodemon app.js\" \"npm run client\""
   },
   "dependencies": {
     "async": "^2.6.3",
