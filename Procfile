@@ -1,1 +1,1 @@
-web: npm start --prefix musiccollectionreact
+web: npm run dev
