@@ -15,10 +15,10 @@ class GetArtists extends Component{
     }
 
     componentDidMount() {
-        /*fetch('/artist')
+        fetch('/artist')
         .then(res => res.json())
         .then(body => this.setState({artists: body}, console.log('Fetched: ', body)))
-        .catch(error => console.log(error))*/
+        .catch(error => console.log(error))
     }
 
     artistFilterOnChange = (event) => {
