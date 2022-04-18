@@ -62,7 +62,7 @@ exports.createAlbumPost = function(req, res, next){
 	album.save(function (err){
 		if (err){ return next(err) };
 		console.log("New album added: " + album);
-		res.redirect('/album');
+		//res.redirect('/album');
 	})
 };
 
