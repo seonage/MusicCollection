@@ -18,7 +18,7 @@
     "express": "^4.17.3",
     "express-validator": "^6.14.0",
     "jquery": "^3.6.0",
-    "moment": "^2.29.2",
+    "moment": "^2.29.4",
     "mongod": "^2.0.0",
     "mongodb": "^3.7.3",
     "mongoose": "^5.13.14",
