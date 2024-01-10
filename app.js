@@ -14,22 +14,15 @@ const env = process.env.NODE_ENV;
 var index = require('./routes/index');
 var users = require('./routes/users');
 
-const options = {
-		reconnectTries: Number.MAX_VALUE,
-        poolSize: 10,
-        useNewUrlParser:true,
-        useUnifiedTopology: true,
-        useFindAndModify: false
-};
 
 var mongoDB = process.env[`MONGO_DB_CONNECT`];
-mongoose.connect(mongoDB, options);
+mongoose.connect(mongoDB);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 var app = express();
 
-app.set('port', process.env.PORT || 5000);
+app.set('port', process.env.PORT || 3000);
 
 var server = app.listen(app.get('port'), function() {
   console.log('Express server listening on port ' + server.address().port);
