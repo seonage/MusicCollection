@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { navigate } from "@reach/router";
 
 class CreateAlbum extends Component {
     constructor(props) {
@@ -39,6 +39,7 @@ class CreateAlbum extends Component {
                 album: this.state.newAlbumName
             })
         })
+        .then(navigate("/"))
     }
 
     render() {

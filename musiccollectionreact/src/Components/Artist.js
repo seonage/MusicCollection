@@ -66,6 +66,7 @@ class Artist extends Component{
                 artistBiography: this.state.artistBiography
             })
         })
+        .then(navigate("/"))
     }
 
     render() {

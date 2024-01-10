@@ -17,7 +17,7 @@ class GetArtists extends Component{
     componentDidMount() {
         fetch('/artist')
         .then(res => res.json())
-        .then(body => this.setState({artists: body}, console.log('Fetched: ', body)))
+        .then(res => this.setState({artists: res}, console.log('Fetched: ', res)))
         .catch(error => console.log(error))
     }
 
@@ -37,6 +37,7 @@ class GetArtists extends Component{
         return(
             <div>
             <h2>Artists</h2>
+            <h4>Please wait a few seconds for the list of artists to be loaded below on initial load and after adding/editing/deleting an artist</h4>
             <label>Search For An Artist</label>
                 <input type="text" onChange={this.artistFilterOnChange} />
                 <ul>
@@ -48,6 +49,6 @@ class GetArtists extends Component{
             </div>
         )
     }
-}
+}   
 
 export default GetArtists;
