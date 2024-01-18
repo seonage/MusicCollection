@@ -4,7 +4,7 @@ module.exports = function(app) {
     app.use(
       '/artist',
       createProxyMiddleware({
-        target: 'https://music-collection-seonage.herokuapp.com/',
+        target: 'http://localhost:3000',
         changeOrigin: true,
       }),
       
