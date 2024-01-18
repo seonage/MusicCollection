@@ -1,54 +1,21 @@
 var Artist = require('../models/artist');
 var Album = require('../models/album');
 
-//const { check, validationResult } = require('express-validator');
-
-//Find all the artists in the database and then displays them in a list on a page
-/*exports.getArtistList = function(req, res, next){
-	Artist.find()
-	  .sort([['artist_name', 'ascending']])
-	  .exec(function (err, list_artists){
-		 if (err) { return next(err) };
-		 res.render('artist_list', { title: 'Artist List', artists_list: list_artists});
-	  });
-};*/
-
-exports.getArtistList = function(req, res, next){
-	Artist.find()
-	  .sort([['artist_name', 'ascending']])
-	  .exec(function (err, artists){
-		 if (err) { return next(err) };
-		 res.json(artists)
-	  });
+exports.getArtistList = async function(req, res){
+	let artistList = await Artist.find({})
+		.sort([['artist_name', 'ascending']])
+		.exec();
+	res.json(artistList);
 };
 
-//Find the details of an artist and displays the information on an page
-/*exports.getArtistDetail = function(req, res, next){
-	Artist.findById(req.params.id, function (err, result){
-		if (err) { return next(err) };
-		//Find all the albums that have been released by the artist
-		Album.find( {artist: req.params.id} )
-		  .sort([['title','ascending']])
-		  .exec(function (err, list_artist_albums){
-			  if (err) { return next(err) };
-			  console.log(list_artist_albums);
-			  res.render('artist_detail', { title: result.artist_name, artist: result, list_artist_albums: list_artist_albums });
-		  });
-	});
-};*/
-
-exports.getArtistDetail = function(req, res, next){
-	Artist.findById(req.params.id, function (err, result){
-		if (err) { return next(err) };
-
-		//Find all the albums that have been released by the artist
-		Album.find( {artist: req.params.id} )
-		  .sort([['title','ascending']])
-		  .exec(function (err, list_artist_albums){
-			  if (err) { return next(err) };
-			  res.json({albums: list_artist_albums, artist_biography: result.artist_biography});
-		  });
-	});
+exports.getArtistDetail = async function(req, res, next){
+	let returnedArtist = await Artist.findById(req.params.id)
+		.exec();
+	let returnedAlbums = await Album.find( {artist: req.params.id} )
+		.sort([['title','ascending']])
+		.exec();
+	res.json({artist_biography: returnedArtist.artist_biography, albums: returnedAlbums});
+	console.log(req.params);
 };
 
 //Find an artist and then edit a characteristic of the artist

@@ -11,13 +11,11 @@ var Artist = require('../models/artist');
 	  });
 };*/
 
-exports.getAlbumList = function(req, res, next){
-	Album.find()
+exports.getAlbumList = async function(req, res, next){
+	let albumList = await Album.find({})
 	  .sort([['title', 'ascending']])
-	  .exec(function (err, list_albums){
-		 if (err) { return next(err)};
-		 res.render('album_list', { title: 'Album List', albums_list: list_albums});
-	  });
+	  .exec();
+	  res.json(albumList);
 };
 
 //Find the details of an album and displays the information on a page
