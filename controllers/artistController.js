@@ -15,26 +15,16 @@ exports.getArtistDetail = async function(req, res, next){
 		.sort([['title','ascending']])
 		.exec();
 	res.json({artist_biography: returnedArtist.artist_biography, albums: returnedAlbums});
-	console.log(req.params);
 };
 
 //Find an artist and then edit a characteristic of the artist
-exports.editArtist = function(req, res, next){
-	/*const editedArtist = Artist.findById(req.params.id, function (err, result){
-		if (err) { return next(err) }
-		console.log("Artist id is: " + req.params.id);
-		console.log("Artist biography:" + req.body.artistBiography)
-
-	})
-
-	console.log(editedArtist);*/
-
-	Artist.findByIdAndUpdate(req.params.id, { artist_biography: req.body.artistBiography }, (result,err) => {
-		if (err){
-			return next(err);
-		}
-	});
-	
+exports.editArtist = async function(req, res, next){
+	let returnedArtist = await Artist.findById(req.params.id)
+		.exec();
+		
+	returnedArtist.artist_biography = req.body.artistBiography;
+	returnedArtist.save();
+	console.log(returnedArtist);
 }
 
 //GET the form that allows new artists to be created
